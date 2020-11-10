@@ -12,3 +12,8 @@ export const getPatients = (): Omit<Patients, "ssn">[] => {
     occupation
   }));
 };
+
+export const findById = (id: string): Patients | undefined => {
+  const entry = patients.find(patient => patient.id === id);
+  return entry;
+};
