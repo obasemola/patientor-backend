@@ -1,5 +1,6 @@
+import { v4 as uuid } from 'uuid';
 import patientData from '../../data/patients.json';
-import { Patients } from '../../types';
+import { Patients, NewPatientEntry } from '../../types';
 
 const patients: Array<Patients> = patientData;
 
@@ -13,7 +14,13 @@ export const getPatients = (): Omit<Patients, "ssn">[] => {
   }));
 };
 
-export const findById = (id: string): Patients | undefined => {
-  const entry = patients.find(patient => patient.id === id);
-  return entry;
+export const addPatient = (entry: NewPatientEntry): Patients => {
+  const newPatient = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    id: uuid() as string,
+    ...entry
+  };
+
+  patients.concat(newPatient);
+  return newPatient;
 };
