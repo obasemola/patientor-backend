@@ -1,5 +1,8 @@
 import patientData from '../../data/patients.json';
+import { Patients } from '../../types';
 
-export const getPatients = () => {
-  return patientData;
+const patients: Array<Patients> = patientData;
+
+export const getPatients = (): Array<Patients> => {
+  return patients;
 };
