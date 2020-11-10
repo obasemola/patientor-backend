@@ -3,6 +3,12 @@ import { Patients } from '../../types';
 
 const patients: Array<Patients> = patientData;
 
-export const getPatients = (): Array<Patients> => {
-  return patients;
+export const getPatients = (): Omit<Patients, "ssn">[] => {
+  return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
+    id,
+    name,
+    dateOfBirth,
+    gender,
+    occupation
+  }));
 };
