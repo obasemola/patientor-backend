@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NewPatientEntry } from '../types';
+import { NewPatientEntry, Gender } from '../types';
 
 const isString = (text: any): text is string => {
   return typeof text === 'string' || text instanceof String;
@@ -30,14 +30,26 @@ const parseDateOfBirth = (dateOfBirth: any): string => {
   return dateOfBirth;
 };
 
+const isGender = (param: any): param is Gender => {
+  return Object.values(Gender).includes(param);
+};
 
-const parseGender = (gender: any): string => {
-  if(!gender || !isString(gender)){
+const parseGender = (gender: any): Gender => {
+  if(!gender || !isGender(gender)){
     throw new Error(`Missing or incorrect gender ${gender}`);
   }
 
   return gender;
 };
+
+
+// const parseGender = (gender: any): string => {
+//   if(!gender || !isString(gender)){
+//     throw new Error(`Missing or incorrect gender ${gender}`);
+//   }
+
+//   return gender;
+// };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const parseOccupation = (occupation: any): string => {
